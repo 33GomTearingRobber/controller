@@ -1,14 +1,8 @@
-import bluetooth
+from machine import Pin,UART # Pin, UART 모듈 가져오기
+import utime # time 모듈 가져오기
 
-# Bluetooth 서버 소켓 설정
-server_socket = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
-server_socket.bind(("", bluetooth.PORT_ANY))  # 아무 포트에서 대기
-server_socket.listen(1)
-
-# 연결을 기다림
-print("Waiting for Bluetooth connection...")
-client_socket, client_info = server_socket.accept()
-print("Accepted connection from ", client_info)
+#UART 전송 속도 (HC-05 = 9600)
+uart = UART(0,9600)
 
 # 데이터 처리 루프
 try:
